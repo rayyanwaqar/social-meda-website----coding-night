@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Social Media App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div id="signup-screen">
+        <h2>Signup</h2>
+        <input type="text" id="signup-name" placeholder="Name">
+        <input type="email" id="signup-email" placeholder="Email">
+        <input type="password" id="signup-password" placeholder="Password">
+        <button id="signup-btn">Signup</button>
+        <p>Already have an account? <span id="goto-login" style="color:blue; cursor:pointer;">Login</span></p>
+    </div>
+
+    <div id="login-screen" style="display:none;">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button id="login-btn">Login</button>
+        <p>Don’t have an account? <span id="goto-signup" style="color:blue; cursor:pointer;">Signup</span></p>
+    </div>
+
+    <div id="feed-screen" style="display:none;">
+        <h2 id="welcome-user"></h2>
+
+        <div class="top-bar">
+            <input type="text" id="search" placeholder="Search posts...">
+
+            <div class="top-controls">
+                <select id="sort">
+                    <option value="latest">Latest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="liked">Most Liked</option>
+                </select>
+                <button id="theme-toggle"><i style= "font-size: 20px;" class="fa-regular fa-moon"></i></button>
+                <button id="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <div class="create-post">
+            <input type="text" id="post-text" placeholder="What's on your mind?">
+          
+            <div class="image-upload-wrapper" style="display:flex; align-items:center; gap:5px;">
+                <input type="text" id="post-image" placeholder="Image URL (optional)" style="flex:1;">
+                <input type="file" id="image-file-input" style="display:none;" accept="image/*">
+                <button id="image-upload-btn">Upload</button>
+            </div>
+
+            <button id="post-btn">Post</button>
+        </div>
+
+        <div id="posts"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
