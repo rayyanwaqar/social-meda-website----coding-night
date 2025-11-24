@@ -1,67 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Social Media App</title>
+    <title>Social Feed App</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+<body class="light">
 
-<body>
-
-    <div id="signup-screen">
-        <h2>Signup</h2>
-        <input type="text" id="signup-name" placeholder="Name">
-        <input type="email" id="signup-email" placeholder="Email">
-        <input type="password" id="signup-password" placeholder="Password">
-        <button id="signup-btn">Signup</button>
-        <p>Already have an account? <span id="goto-login" style="color:blue; cursor:pointer;">Login</span></p>
-    </div>
-
-    <div id="login-screen" style="display:none;">
-        <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email">
+    <div id="login-screen" class="auth-screen">
+        <h2>👋 Login to Continue</h2>
+        <input type="email" id="login-email" placeholder="Email Address">
         <input type="password" id="login-password" placeholder="Password">
-        <button id="login-btn">Login</button>
-        <p>Don’t have an account? <span id="goto-signup" style="color:blue; cursor:pointer;">Signup</span></p>
+        <button id="login-btn">LOGIN</button>
+        <p class="switch-text">Don't have an account? <a href="#" onclick="switchScreen('signup-screen')">Sign Up</a></p>
     </div>
 
-    <div id="feed-screen" style="display:none;">
-        <h2 id="WElCOME-user"></h2>
+    <div id="signup-screen" class="auth-screen hidden">
+        <h2>📝 Create Your Account</h2>
+        <input type="text" id="signup-name" placeholder="Full Name">
+        <input type="email" id="signup-email" placeholder="Email Address">
+        <input type="password" id="signup-password" placeholder="Password">
+        <button id="signup-btn">SIGN UP</button>
+        <p class="switch-text">Already have an account? <a href="#" onclick="switchScreen('login-screen')">Login</a></p>
+    </div>
 
+    <div id="feed-screen" class="hidden">
         <div class="top-bar">
-            <input type="text" id="search" placeholder="Search posts...">
-
+            <input type="search" id="search" placeholder="Search posts and users...">
+            
             <div class="top-controls">
-                <select id="sort">
-                    <option value="latest">Latest</option>
-                    <option value="oldest">Oldest</option>
-                    <option value="liked">Most Liked</option>
+                <select>
+                    <option>Latest</option>
+                    <option>Trending</option>
+                    <option>My Posts</option>
                 </select>
-                <button id="theme-toggle"><i style= "font-size: 20px;" class="fa-regular fa-moon"></i></button>
-                <button id="logout-btn">Logout</button>
+                <button id="theme-toggle">☀️/🌙</button>
+                <button id="logout-btn">Log Out</button>
             </div>
         </div>
 
         <div class="create-post">
-            <input type="text" id="post-text" placeholder="What's on your mind?">
-          
-            <div class="image-upload-wrapper" style="display:flex; align-items:center; gap:5px;">
-                <input type="text" id="post-image" placeholder="Image URL (optional)" style="flex:1;">
-                <input type="file" id="image-file-input" style="display:none;" accept="image/*">
-                <button id="image-upload-btn">Upload</button>
-            </div>
-
-            <button id="post-btn">Post</button>
+            <h3>What's on your mind?</h3>
+            <textarea id="post-input" placeholder="Share something new..."></textarea>
+            <input type="text" id="image-input" placeholder="Image URL (Optional)">
+            <button id="post-btn">Post Now</button>
         </div>
 
-        <div id="posts"></div>
+        <div id="posts">
+            </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
-
+</html>
 </html>
