@@ -1,13 +1,22 @@
 // Function to switch between Login/Signup/Feed screens
 function switchScreen(screenId) {
-    document.querySelectorAll('.auth-screen, #feed-screen').forEach(screen => {
+    // Hide all main screens first
+    document.querySelectorAll('#login-screen, #signup-screen, #feed-screen').forEach(screen => {
         screen.classList.add('hidden');
     });
-    document.getElementById(screenId).classList.remove('hidden');
 
-    // If switching to feed, update the header text
+    // Show the requested screen
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+        targetScreen.classList.remove('hidden');
+    }
+    
+    // Set the body class for styling (if not already set)
+    document.body.classList.add(document.body.classList.contains('dark') ? 'dark' : 'light');
+
+    // If switching to feed, make sure posts are rendered
     if (screenId === 'feed-screen') {
-        document.querySelector('h2').textContent = 'Social Feed';
+        renderPosts();
     }
 }
 
@@ -20,27 +29,48 @@ let posts = [
 // Function to render all posts
 function renderPosts() {
     const postsContainer = document.getElementById('posts');
+    if (!postsContainer) return; // Safety check
+
     postsContainer.innerHTML = ''; // Clear existing posts
 
-    posts.forEach(post => {
+    // Sort posts by ID (newest first)
+    [...posts].sort((a, b) => b.id - a.id).forEach(post => {
         const postElement = document.createElement('div');
         postElement.classList.add('post');
         postElement.innerHTML = `
             <h4>@${post.user}</h4>
             <p>${post.content}</p>
-            ${post.image ? `<img src="${post.image}" alt="Post Image">` : ''}
+            ${post.image && post.image.trim() ? `<img src="${post.image.trim()}" alt="Post Image">` : ''}
             <div class="post-actions">
                 <button class="like-btn" onclick="toggleLike(${post.id})">Like (${post.likes})</button>
                 <button class="delete-btn" onclick="deletePost(${post.id})">Delete</button>
             </div>
         `;
-        postsContainer.prepend(postElement); // Add new post to the top
+        postsContainer.appendChild(postElement); 
     });
 }
 
+// Global functions (needed because they are called directly from HTML 'onclick')
+
+window.toggleLike = function(postId) {
+    const post = posts.find(p => p.id === postId);
+    if (post) {
+        // Simple toggle logic (increase likes by 1)
+        post.likes += 1; 
+        renderPosts();
+    }
+};
+
+window.deletePost = function(postId) {
+    if (confirm("Are you sure you want to delete this post?")) {
+        posts = posts.filter(p => p.id !== postId);
+        renderPosts();
+    }
+};
+
 // Function to handle post submission
-document.getElementById('post-btn').addEventListener('click', () => {
-    const content = document.getElementById('post-input').value.trim();
+document.getElementById('post-btn')?.addEventListener('click', () => {
+    const content = document.querySelector('.create-post textarea').value.trim();
     const image = document.getElementById('image-input').value.trim();
     
     if (content) {
@@ -53,7 +83,7 @@ document.getElementById('post-btn').addEventListener('click', () => {
         };
         posts.push(newPost);
         renderPosts();
-        document.getElementById('post-input').value = '';
+        document.querySelector('.create-post textarea').value = '';
         document.getElementById('image-input').value = '';
     } else {
         alert('Please write something before posting!');
@@ -61,26 +91,39 @@ document.getElementById('post-btn').addEventListener('click', () => {
 });
 
 // Function to toggle theme
-document.getElementById('theme-toggle').addEventListener('click', () => {
+document.getElementById('theme-toggle')?.addEventListener('click', () => {
     const body = document.body;
     if (body.classList.contains('light')) {
         body.classList.replace('light', 'dark');
+        document.getElementById('theme-toggle').textContent = '🌙';
     } else {
         body.classList.replace('dark', 'light');
+        document.getElementById('theme-toggle').textContent = '☀️';
     }
 });
 
 // Mock Login Action
-document.getElementById('login-btn').addEventListener('click', () => {
-    // In a real app, you would check credentials here
+document.getElementById('login-btn')?.addEventListener('click', () => {
+    // Placeholder for actual login logic
+    console.log('Attempting login...');
+    // After successful login:
     switchScreen('feed-screen');
-    renderPosts(); // Load posts after successful login
 });
 
 // Mock Logout Action
-document.getElementById('logout-btn').addEventListener('click', () => {
+document.getElementById('logout-btn')?.addEventListener('click', () => {
     switchScreen('login-screen');
 });
 
-// Initial load
+// Mock Signup Action
+document.getElementById('signup-btn')?.addEventListener('click', () => {
+    // Placeholder for actual signup logic
+    console.log('Attempting signup...');
+    // After successful signup, redirect to feed or login:
+    switchScreen('login-screen'); // Redirect to login page after signup
+    alert('Account created! Please log in.');
+});
+
+// Initial load: Start on the login screen
 switchScreen('login-screen');
+document.getElementById('theme-toggle').textContent = '☀️'; // Set initial button icon
