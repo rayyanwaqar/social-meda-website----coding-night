@@ -9,9 +9,11 @@
 
 /* ====== GLOBAL THEME ====== */
 
+/* Light mode with new background image and pattern */
 body.light {
-    background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?w=1600')
-        no-repeat center/cover;
+    /* New background image */
+    background: url('https://i.pinimg.com/736x/ca/78/ca/ca78ca08cd9aef318db4e6035bc3625c.jpg') 
+        repeat center/auto; /* Changed to repeat for a subtle pattern */
     color: #1a1a1a;
 }
 
@@ -27,11 +29,13 @@ body.dark::before {
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: rgba(255,255,255,0.4);
+    /* Adjusted light overlay for better contrast on the repeating pattern */
+    background: rgba(255,255,255,0.7); 
 }
 
 body.dark::before {
-    background: rgba(0,0,0,0.5);
+    /* Slightly lighter dark overlay */
+    background: rgba(0,0,0,0.6); 
 }
 
 h2 {
@@ -47,7 +51,8 @@ h2 {
     width: 420px;
     margin: 80px auto;
     padding: 45px 30px;
-    background: rgba(255,255,255,0.85);
+    /* Increased transparency on auth screens for the background pattern to show */
+    background: rgba(255,255,255,0.75); 
     backdrop-filter: blur(10px);
     border-radius: 22px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -56,7 +61,7 @@ h2 {
 
 body.dark #signup-screen,
 body.dark #login-screen {
-    background: rgba(20, 28, 36, 0.9);
+    background: rgba(20, 28, 36, 0.85); /* Slightly more transparent dark */
 }
 
 #signup-screen input,
@@ -107,7 +112,8 @@ body.dark #login-screen {
 
 /* TOP BAR */
 .top-bar {
-    background: rgba(255, 255, 255, 0.8);
+    /* Increased transparency */
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(8px);
     padding: 15px 20px;
     border-radius: 16px;
@@ -119,7 +125,8 @@ body.dark #login-screen {
 }
 
 body.dark .top-bar {
-    background: rgba(30, 40, 50, 0.8);
+    /* Increased transparency */
+    background: rgba(30, 40, 50, 0.7);
 }
 
 .top-bar input#search {
@@ -159,7 +166,8 @@ body.dark .top-bar {
 /* ====== CREATE POST BOX ====== */
 
 .create-post {
-    background: rgba(255,255,255,0.9);
+    /* Increased transparency */
+    background: rgba(255,255,255,0.8);
     padding: 25px;
     border-radius: 20px;
     margin: 25px 0;
@@ -167,7 +175,8 @@ body.dark .top-bar {
 }
 
 body.dark .create-post {
-    background: rgba(30, 40, 50, 0.9);
+    /* Increased transparency */
+    background: rgba(30, 40, 50, 0.8);
 }
 
 .create-post input {
@@ -204,7 +213,8 @@ body.dark .create-post {
 
 /* POST CARD */
 .post {
-    background: rgba(255,255,255,0.95);
+    /* Increased transparency */
+    background: rgba(255,255,255,0.85);
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
@@ -216,7 +226,8 @@ body.dark .create-post {
 }
 
 body.dark .post {
-    background: rgba(35,45,55,0.95);
+    /* Increased transparency */
+    background: rgba(35,45,55,0.85);
 }
 
 /* POST TEXT */
