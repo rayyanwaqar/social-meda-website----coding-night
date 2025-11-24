@@ -11,14 +11,15 @@
 
 body.light {
     /* Light mode: New image, set to cover for non-blurred/full-screen view */
-    background: url('https://png.pngtree.com/thumb_back/fh260/background/20190220/ourmid/pngtree-ui-material-irregular-lines-fashion-trend-line-line-background-image_4442.jpg') 
+    background: url('https://cdn.dribbble.com/userupload/42762770/file/still-c27e7e3a177354be147f46301063bca6.png?resize=400x0') 
         no-repeat center/cover;
     color: #1a1a1a;
 }
 
 body.dark {
     /* Dark mode: Solid dark color, no background image needed */
-    background: #0b1016;
+  background: url('https://cdn.dribbble.com/userupload/42762770/file/still-c27e7e3a177354be147f46301063bca6.png?resize=400x0') 
+          no-repeat center/cover
     color: #e6e6e6;
 }
 
