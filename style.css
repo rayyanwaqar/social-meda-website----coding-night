@@ -7,281 +7,320 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* ====== GLOBAL THEME ====== */
+/* BACKGROUND FIX & THEME */
 
 body.light {
-    /* Light mode: New image, set to cover for non-blurred/full-screen view */
-    background: url('https://cdn.dribbble.com/userupload/42762770/file/still-c27e7e3a177354be147f46301063bca6.png?resize=400x0') 
-        no-repeat center/cover;
+    /* BACKGROUND FIX: Full screen cover and fixed attachment */
+    background: url('https://i.pinimg.com/736x/ca/78/ca/ca78ca08cd9aef318db4e6035bc3625c.jpg') 
+        no-repeat center center fixed; 
+    background-size: cover; 
     color: #1a1a1a;
 }
 
 body.dark {
-    /* Dark mode: Solid dark color, no background image needed */
-  background: url('https://cdn.dribbble.com/userupload/42762770/file/still-c27e7e3a177354be147f46301063bca6.png?resize=400x0') 
-          no-repeat center/cover
-    color: #e6e6e6;
+    background: #121212; /* Deeper dark background */
+    color: #f1f1f1;
 }
 
 /* Add transparent overlay for readability */
-body.light::before, 
-body.dark::before {
+body.light::before, body.dark::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
-    /* Adjusted light overlay for better contrast */
-    background: rgba(255,255,255,0.4); 
+}
+
+body.light::before {
+    background: rgba(255,255,255,0.3);
 }
 
 body.dark::before {
-    /* Dark overlay for dark background */
-    background: rgba(0,0,0,0.5); 
+    background: rgba(0,0,0,0.6);
+}
+
+.hidden {
+    display: none !important;
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 50px;
-    font-weight: 600;
+    margin-bottom: 40px;
+    font-weight: 700;
 }
 
-/* ====== AUTH SCREENS (Form Size Increased) ====== */
+/* ====== AUTH SCREENS (Clean Shape) ====== */
 
-#signup-screen,
-#login-screen {
-    /* Increased width from 420px to 480px */
-    width: 480px; 
-    margin: 80px auto;
-    padding: 50px 40px; /* Increased padding */
-    background: rgba(255,255,255,0.85); 
+.auth-screen {
+    width: 450px;
+    margin: 100px auto;
+    padding: 40px;
+    background: rgba(255,255,255,0.95);
     backdrop-filter: blur(10px);
-    border-radius: 25px; /* Slightly more rounded */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 12px; /* Softer shape */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
 }
 
-body.dark #signup-screen,
-body.dark #login-screen {
-    background: rgba(20, 28, 36, 0.9);
+body.dark .auth-screen {
+    background: rgba(30, 30, 30, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-#signup-screen input,
-#login-screen input {
+.auth-screen input {
     width: 100%;
-    padding: 18px; /* Increased input padding */
-    margin-bottom: 18px;
-    border-radius: 12px;
-    border: 1px solid #bbb;
-    font-size: 16px;
+    padding: 14px;
+    margin-bottom: 15px;
+    border-radius: 8px; /* Clean rectangular shape */
+    border: 1px solid #ddd;
+    font-size: 15px;
     transition: 0.3s;
 }
 
-#signup-screen input:focus,
-#login-screen input:focus {
-    border-color: #4a90ff;
-    box-shadow: 0 0 8px #4a90ff55;
+body.dark .auth-screen input {
+    background: #282828;
+    color: #f1f1f1;
+    border-color: #444;
+}
+
+.auth-screen input:focus {
+    border-color: #5d5dff;
+    box-shadow: 0 0 0 3px #5d5dff33; /* Focus ring effect */
     outline: none;
 }
 
-#signup-screen button,
-#login-screen button {
+.auth-screen button {
     width: 100%;
-    padding: 18px; /* Increased button padding */
-    border-radius: 15px; /* Changed from 50px for a more square/modern look */
+    padding: 16px;
+    border-radius: 8px; /* Clean rectangular shape */
     border: none;
-    background: linear-gradient(135deg, #436dff, #2eb7ff);
+    /* Updated Vibrant Gradient */
+    background: linear-gradient(135deg, #5d5dff, #3cb4fc); 
     color: white;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 17px;
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
 }
 
-#signup-screen button:hover,
-#login-screen button:hover {
+.auth-screen button:hover {
     transform: translateY(-2px);
-    opacity: 0.9;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.switch-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.switch-text a {
+    color: #5d5dff;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 /* ====== FEED SCREEN ====== */
 #feed-screen {
     width: 100%;
-    max-width: 1250px;
-    margin: 30px auto;
-    padding: 20px;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-/* TOP BAR */
+/* TOP BAR (Minimalist Design) */
 .top-bar {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(8px);
-    padding: 15px 20px;
-    border-radius: 16px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    flex-wrap: wrap;
+    margin-bottom: 25px;
 }
 
 body.dark .top-bar {
-    background: rgba(30, 40, 50, 0.8);
+    background: rgba(30, 30, 30, 0.85);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .top-bar input#search {
     flex: 1;
-    padding: 12px 18px;
-    /* Shape Modification: Search box changed to rounded rectangle */
-    border-radius: 12px; 
-    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    background: #f9f9f9;
 }
 
-/* TOP BUTTONS (Shape Modification) */
+body.dark .top-bar input#search {
+    background: #282828;
+    color: #f1f1f1;
+    border-color: #444;
+}
+
+/* TOP BUTTONS (Flat, Clean Shape) */
+.top-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
 .top-controls select,
 #theme-toggle,
 #logout-btn {
-    padding: 12px 20px;
-    /* Shape Modification: Buttons changed to soft square/pill shape */
-    border-radius: 12px; 
+    padding: 10px 15px;
+    border-radius: 8px; /* Clean rectangular shape */
     font-weight: 600;
     border: none;
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Added subtle shadow */
+    font-size: 14px;
 }
 
+.top-controls select {
+    background: #eef;
+    color: #5d5dff;
+}
+
+body.dark .top-controls select {
+    background: #4a4a4a;
+    color: #f1f1f1;
+}
+
+
 #theme-toggle {
-    background: #FF6F61;
+    background: #ff7e5f; /* Orange-Pink Color */
     color: white;
 }
 
 #logout-btn {
-    background: #28c18e;
+    background: #3ac073; /* Green Color */
     color: white;
 }
 
-.top-controls select {
-    background: #4a90ff;
-    color: white;
-}
 
 /* ====== CREATE POST BOX ====== */
 
 .create-post {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.98);
     padding: 25px;
-    border-radius: 20px;
-    margin: 25px 0;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.15);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    display: grid;
+    gap: 10px;
 }
 
 body.dark .create-post {
-    background: rgba(30, 40, 50, 0.9);
+    background: rgba(30, 30, 30, 0.98);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
+.create-post textarea,
 .create-post input {
-    padding: 14px;
-    border-radius: 12px;
-    border: 1px solid #bbb;
-    font-size: 15px;
-}
-
-/* POST BUTTON */
-#post-btn {
     width: 100%;
-    padding: 14px;
-    background: #2ecf98;
-    border-radius: 15px; /* Changed from 50px */
-    color: white;
-    font-size: 17px;
-    font-weight: 600;
-    transition: 0.3s;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    resize: vertical;
+    min-height: 80px;
 }
 
-#post-btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
+body.dark .create-post textarea,
+body.dark .create-post input {
+    background: #282828;
+    color: #f1f1f1;
+    border-color: #444;
+}
+
+#post-btn {
+    padding: 14px;
+    background: #3ac073;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 /* ====== POSTS GRID ====== */
 
 #posts {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
 }
 
 /* POST CARD */
 .post {
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.98);
     padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     transition: 0.3s;
-}
-
-.post:hover {
-    transform: translateY(-5px);
 }
 
 body.dark .post {
-    background: rgba(35,45,55,0.95);
+    background: rgba(30, 30, 30, 0.98);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* POST TEXT */
+.post h4 {
+    margin-bottom: 5px;
+    color: #5d5dff;
+    font-weight: 600;
+}
+
 .post p {
     font-size: 15px;
     line-height: 1.6;
+    margin-bottom: 12px;
 }
 
-/* POST IMAGE */
 .post img {
     width: 100%;
-    border-radius: 16px;
-    margin-top: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
-/* POST BUTTONS (Shape Modification) */
 .post .post-actions button {
-    padding: 10px 15px;
-    /* Shape Modification: Post action buttons changed to rounded rectangle */
-    border-radius: 10px; 
+    padding: 8px 12px;
+    border-radius: 6px;
     border: none;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
-    transition: 0.3s;
+    margin-right: 8px;
 }
 
-/* LIKE */
 .post .like-btn {
-    background: #4a90ff;
+    background: #5d5dff;
     color: white;
 }
 
-/* DELETE */
 .post .delete-btn {
     background: #ff4d4d;
     color: white;
 }
 
-/* EDIT */
 .edit-btn {
-    background: #ea9c33;
-    color: white;
+    background: #ffc107;
+    color: #1a1a1a;
 }
 
 /* MOBILE */
 @media(max-width: 768px) {
-    #feed-screen,
-    #signup-screen,
-    #login-screen {
+    .auth-screen {
         width: 90%;
-        margin: 20px auto;
+        margin: 40px auto;
     }
-    /* Adjusted mobile button shape for consistency */
-    .top-controls select,
-    #theme-toggle,
-    #logout-btn {
-        padding: 10 15px;
+    .top-bar {
+        flex-direction: column;
+    }
+    .top-controls {
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 }
