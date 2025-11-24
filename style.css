@@ -281,6 +281,6 @@ body.dark .post {
     .top-controls select,
     #theme-toggle,
     #logout-btn {
-        padding: 10px 15px;
+        padding: 10 15px;
     }
 }
