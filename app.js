@@ -110,19 +110,22 @@ document.getElementById('login-btn')?.addEventListener('click', () => {
     switchScreen('feed-screen');
 });
 
-// Mock Logout Action
-document.getElementById('logout-btn')?.addEventListener('click', () => {
-    switchScreen('login-screen');
+document.getElementById('login-btn')?.addEventListener('click', () => {
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value.trim();
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const found = users.find(u => u.email === email && u.password === password);
+
+    if (found) {
+        localStorage.setItem("currentUser", JSON.stringify(found));
+        switchScreen('feed-screen');
+    } else {
+        alert('Incorrect Email or Password!');
+    }
 });
 
-// Mock Signup Action
-document.getElementById('signup-btn')?.addEventListener('click', () => {
-    // Placeholder for actual signup logic
-    console.log('Attempting signup...');
-    // After successful signup, redirect to feed or login:
-    switchScreen('login-screen'); // Redirect to login page after signup
-    alert('Account created! Please log in.');
-});
 
 // Initial load: Start on the login screen
 switchScreen('login-screen');
